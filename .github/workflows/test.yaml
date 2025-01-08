@@ -32,15 +32,8 @@ jobs:
             [
               "test-private-terraform-module"
             ]
-      - run: |
-          git config --global url."https://oauth2:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}".insteadOf "https://github.com/${GITHUB_REPOSITORY_OWNER}"
-        env:
-          GITHUB_TOKEN: ${{steps.token.outputs.token}}
+      - run: gh auth setup-git
       - run: terraform init
-      - run: |
-          git config --global --unset url."https://oauth2:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}".insteadOf
         env:
-          GITHUB_TOKEN: ${{steps.token.outputs.token}}
-      - run: rm -R .terraform
-      - run: terraform init
+          GH_TOKEN: ${{steps.token.outputs.token}}
       - run: terraform plan
