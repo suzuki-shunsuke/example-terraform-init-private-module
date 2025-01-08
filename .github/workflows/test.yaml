@@ -34,7 +34,7 @@ jobs:
             ]
       - run: gh auth setup-git
         env:
-          GH_TOKEN: ${{steps.token.outputs.token}}
+          GH_TOKEN: dummy
       - run: terraform init
         env:
           GH_TOKEN: ${{steps.token.outputs.token}}
