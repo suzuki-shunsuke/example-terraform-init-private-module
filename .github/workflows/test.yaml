@@ -37,4 +37,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{steps.token.outputs.token}}
       - run: terraform init
+      - run: |
+          git config --global --unset url."https://oauth2:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}".insteadOf
+        env:
+          GITHUB_TOKEN: ${{steps.token.outputs.token}}
       - run: terraform plan
