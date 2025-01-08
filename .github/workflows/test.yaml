@@ -33,7 +33,7 @@ jobs:
               "test-private-terraform-module"
             ]
       - run: gh auth setup-git
-      - run: terraform init
         env:
           GH_TOKEN: ${{steps.token.outputs.token}}
+      - run: terraform init
       - run: terraform plan
