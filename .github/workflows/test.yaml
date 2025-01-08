@@ -33,7 +33,7 @@ jobs:
               "test-private-terraform-module"
             ]
       - run: |
-          git config url."https://oauth2:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}".insteadOf "https://github.com/${GITHUB_REPOSITORY_OWNER}"
+          git config --global url."https://oauth2:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}".insteadOf "https://github.com/${GITHUB_REPOSITORY_OWNER}"
         env:
           GITHUB_TOKEN: ${{steps.token.outputs.token}}
       - run: terraform init
